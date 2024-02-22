@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+<!-- Extend the 'base.html' template -->
+
+{% block content %}
+<!-- Define the content block -->
+
+<center>
+  <br />
+  <h1 class="display-5 fw-bold text-white">History</h1>
+  <br />
+</center>
+
+<div class="container">
+  <!-- Container for the content -->
+  <table class="table">
+    <!-- Table to display book history -->
+    <thead class="thead-dark">
+      <!-- Table header with dark background -->
+      <tr>
+        <th scope="col">Book Name</th>
+        <th scope="col">Author Name</th>
+        <th scope="col">Issue Date</th>
+        <th scope="col">Return Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books %}
+      <!-- Loop through books to display each row -->
+      <tr>
+        <td>{{book.book_id.book_name}}</td>
+        <!-- Display book name -->
+        <td>{{book.book_id.author_name}}</td>
+        <!-- Display author name -->
+        <td>{{book.issue_date}}</td>
+        <!-- Display issue date -->
+        <td>{{book.return_date}}</td>
+        <!-- Display return date -->
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-radius: 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 16px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+
+  .container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .input-group {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  body {
+    background: linear-gradient(45deg, #3e2723, #795548);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+</style>
+
+{% endblock %}
+<!-- End of content block -->

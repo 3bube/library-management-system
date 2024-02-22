@@ -1,0 +1,92 @@
+{% extends 'base.html' %} <!-- Extend the 'base.html' template -->
+{% block content %} <!-- Define the content block -->
+
+<br />
+<center>
+  <h1 class="display-5 text-white">Register To Library</h1>
+</center>
+<br /><br />
+<div class="container shadow shadow-lg p-5 mt-10" style="width: 550px">
+  <!-- Container for the registration form -->
+  {% for message in messages %}
+  <!-- Display error messages -->
+  <div class="alert alert-danger" role="alert">{{message}}</div>
+  {% endfor %}
+  <form action="{% url 'register' %}" method="POST">
+    <!-- Registration form with POST method -->
+    {% csrf_token %} <!-- CSRF token for security -->
+    <div class="form-group">
+      <label class="text-white lead fw-bold"><b>First Name</b></label>
+      <!-- Input field for first name -->
+      <input
+        type="text"
+        name="first_name"
+        class="form-control form-control-lg rounded-0"
+        placeholder="First Name"
+      />
+    </div>
+    <br />
+    <div class="form-group">
+      <label class="text-white lead fw-bold"><b>Last Name</b></label>
+      <!-- Input field for last name -->
+      <input
+        type="text"
+        name="last_name"
+        class="form-control form-control-lg rounded-0"
+        placeholder="Last Name"
+      />
+    </div>
+    <br />
+    <div class="form-group">
+      <label class="text-white lead fw-bold"><b>Username</b></label>
+      <!-- Input field for username -->
+      <input
+        type="text"
+        name="username"
+        class="form-control form-control-lg rounded-0"
+        placeholder="Username"
+      />
+    </div>
+    <br />
+    <div class="form-group">
+      <label class="text-white lead fw-bold"><b>Email</b></label>
+      <!-- Input field for email -->
+      <input
+        type="email"
+        name="email"
+        class="form-control form-control-lg rounded-0"
+        placeholder="Email"
+      />
+    </div>
+    <br />
+    <div class="form-group">
+      <label class="text-white lead fw-bold"><b>Password</b></label>
+      <!-- Input field for password -->
+      <input
+        type="password"
+        name="password1"
+        class="form-control form-control-lg rounded-0"
+        placeholder="Password"
+      />
+    </div>
+    <br />
+    <div class="form-group">
+      <label class="text-white lead fw-bold"><b>Confirm Password</b></label>
+      <!-- Input field for confirming password -->
+      <input
+        type="password"
+        name="password2"
+        class="form-control form-control-lg rounded-0"
+        placeholder="Confirm Password"
+      />
+    </div>
+    <br />
+    <center>
+      <button type="submit" class="btn btn-darkbrown">Register</button>
+      <!-- Submit button for registration -->
+    </center>
+    <br />
+  </form>
+</div>
+<br />
+{% endblock %} <!-- End of content block -->

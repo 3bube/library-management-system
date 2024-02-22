@@ -1,0 +1,54 @@
+{% extends 'base.html' %} <!-- Extend the 'base.html' template -->
+{% block content %} <!-- Define the content block -->
+
+<br />
+<center>
+  <h1 class="display-5 text-white">Login Page</h1>
+</center>
+<br /><br />
+<div class="container shadow shadow-lg p-5 mt-10" style="width: 550px">
+  <!-- Container for the login form -->
+  <form action="{% url 'login' %}" method="POST">
+    <!-- Login form with POST method -->
+    {% csrf_token %} <!-- CSRF token for security -->
+    <div class="form-group">
+      <label class="text-white lead fw-bold"><b>Username</b></label>
+      <!-- Input field for username -->
+      <input
+        type="text"
+        name="username"
+        class="form-control form-control-lg rounded-0"
+        placeholder="Username"
+      />
+    </div>
+    <br />
+    <div class="form-group">
+      <label class="text-white lead fw-bold"><b>Password</b></label>
+      <!-- Input field for password -->
+      <input
+        type="password"
+        name="password"
+        class="form-control form-control-lg rounded-0"
+        placeholder="Password"
+      />
+    </div>
+    <div class="col-auto">
+      <span id="passwordHelpInline" class="form-text">
+        Must be 8-20 characters long.
+      </span>
+    </div>
+    <br />
+    <center>
+      <button type="submit" class="btn btn-darkbrown">Login</button>
+      <!-- Submit button for login -->
+    </center>
+    <br />
+  </form>
+  <br />
+  {% for message in messages %}
+  <!-- Display error messages -->
+  <div class="alert alert-danger" role="alert">{{message}}</div>
+  {% endfor %}
+</div>
+
+{% endblock %} <!-- End of content block -->

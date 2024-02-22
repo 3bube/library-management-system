@@ -1,0 +1,134 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{% extends 'base.html' %} <!-- Extend the 'base.html' template -->
+{% block content %} <!-- Define the content block -->
+
+{% for message in messages %}
+<div class="alert alert-dark alert-{{message.tags}} rounded-0" role="alert">
+  {{message}}
+</div>
+{% endfor %}
+
+<center>
+  <br />
+  <h1 class="display-5 fw-bold text-white">Available Books</h1>
+  <br />
+  <div class="input-group container">
+    <!-- Search input field -->
+    <input
+      id="search"
+      type="search"
+      class="form-control rounded"
+      placeholder="Search Book"
+      aria-label="Search"
+      aria-describedby="search-addon"
+    />
+  </div>
+</center>
+<br />
+
+<div class="container">
+  <!-- Table to display available books -->
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th class="" scope="col">Book Name</th>
+        <th class="" scope="col">Author Name</th>
+        <th class="" scope="col">ISBN</th>
+        <th class="" scope="col">Description</th>
+        <th class="" scope="col"></th>
+      </tr>
+    </thead>
+    <tbody id="table_data">
+      {% for book in books %}
+      <!-- Loop through books to display each row -->
+      <tr>
+        <td>{{book.book_name}}</td>
+        <td>{{book.author_name}}</td>
+        <td>{{book.isbn}}</td>
+        <td>{{book.description}}</td>
+
+        <td>
+          <center>
+            <!-- Form to issue a book -->
+            <form action="issue" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="book_id" value="{{book.id}}" />
+              <button type="submit" class="btn-sm add-btn">
+                <b>Add</b>
+              </button>
+            </form>
+          </center>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script>
+  $(document).ready(function () {
+    // jQuery script for filtering table rows based on search input
+    $("#search").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("#table_data tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    });
+  });
+</script>
+
+<style>
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-radius: 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 16px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f5f5f5;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+
+  .container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .input-group {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  body {
+    background: linear-gradient(45deg, #3e2723, #795548);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+
+  .add-btn {
+    padding: 5px;
+    border-radius: 7px !important;
+    transition: 0.4s;
+  }
+
+  .add-btn:hover {
+    background: #3e2723 !important;
+    color: #ffffff;
+  }
+</style>
+
+{% endblock %} <!-- End of content block -->

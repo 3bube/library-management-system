@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+<!-- Extend the 'base.html' template -->
+{% load static %}
+<!-- Load static files such as CSS and JS -->
+{% block content %}
+<!-- Define the content block -->
+
+<style>
+  html {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    position: relative;
+    height: 100%;
+  }
+</style>
+
+<body>
+  <div class="container mt-5">
+    <!-- Container for the content with top margin -->
+    <div class="row">
+      <div class="col-md-12">
+        <br />
+        <br />
+        <h1 class="text-center text-white">LIBRARY MANAGEMENT SYSTEM</h1>
+        <!-- Centered title for the library management system -->
+        <br />
+        <br />
+        <br />
+      </div>
+    </div>
+
+    <br />
+
+    <p class="text-center text-white lead fw-bold">Welcome to my library.</p>
+    <!-- Centered lead text for welcome message -->
+    <p class="text-center text-white lead fw-bold">You can borrow books</p>
+    <!-- Centered lead text for borrowing books -->
+    <p class="text-center text-white lead fw-bold">and also return them.</p>
+    <!-- Centered lead text for returning books -->
+  </div>
+
+  <footer class="text-center mt-5">
+    <!-- Footer with text centered and top margin -->
+    <p>&copy; 2024 Library Management System</p>
+    <!-- Copyright information -->
+  </footer>
+</body>
+
+{% endblock %}
+<!-- End of content block -->
